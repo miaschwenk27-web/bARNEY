@@ -6,7 +6,8 @@
         "radio": "*",
         "microphone": "*",
         "pxt-nezha2": "github:elecfreaks/pxt-nezha2#v1.2.1",
-        "audio-recording": "*"
+        "audio-recording": "*",
+        "pxt-PlanetX": "github:elecfreaks/pxt-planetx#v1.6.1"
     },
     "files": [
         "main.blocks",
