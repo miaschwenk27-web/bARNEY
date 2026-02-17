@@ -1,3 +1,4 @@
+let count = 0
 /**
  * Night = 0-90
  * 
@@ -5,6 +6,10 @@
  * 
  * Day = 150+
  */
+function slow_forward () {
+    nezhaV2.move(nezhaV2.MotorPostion.M1, 30, nezhaV2.MovementDirection.CCW, 367, nezhaV2.SportsMode.Degree, nezhaV2.DelayMode.NoDelay)
+    nezhaV2.move(nezhaV2.MotorPostion.M2, 30, nezhaV2.MovementDirection.CCW, 367, nezhaV2.SportsMode.Degree, nezhaV2.DelayMode.NoDelay)
+}
 function backward () {
     nezhaV2.move(nezhaV2.MotorPostion.M1, 50, nezhaV2.MovementDirection.CW, 566, nezhaV2.SportsMode.Degree, nezhaV2.DelayMode.NoDelay)
     nezhaV2.move(nezhaV2.MotorPostion.M2, 50, nezhaV2.MovementDirection.CCW, 566, nezhaV2.SportsMode.Degree, nezhaV2.DelayMode.NoDelay)
@@ -74,30 +79,51 @@ function turn_right () {
     nezhaV2.move(nezhaV2.MotorPostion.M2, 30, nezhaV2.MovementDirection.CCW, 177, nezhaV2.SportsMode.Degree, nezhaV2.DelayMode.NoDelay)
 }
 basic.forever(function () {
-    PlanetX_Display.showUserNumber(1, PlanetX_Basic.lightSensor(PlanetX_Basic.AnalogRJPin.J1))
-    if (PlanetX_Basic.lightSensor(PlanetX_Basic.AnalogRJPin.J1) <= 200) {
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . # # # .
-            `)
-    } else if (PlanetX_Basic.lightSensor(PlanetX_Basic.AnalogRJPin.J1) < 500) {
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            `)
-    } else {
-        basic.showLeds(`
-            . # # # .
-            . # # # .
-            . # # # .
-            . # # # .
-            . # # # .
-            `)
+    nezhaV2.start(nezhaV2.MotorPostion.M1, -50)
+    nezhaV2.start(nezhaV2.MotorPostion.M2, 50)
+    while (count <= 2) {
+        PlanetX_Display.showUserNumber(2, PlanetX_Basic.lightSensor(PlanetX_Basic.AnalogRJPin.J1))
+        PlanetX_Display.showUserNumber(1, count)
+        if (PlanetX_Basic.lightSensor(PlanetX_Basic.AnalogRJPin.J1) <= 200) {
+            nezhaV2.start(nezhaV2.MotorPostion.M1, -30)
+            nezhaV2.start(nezhaV2.MotorPostion.M2, 30)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . # # # .
+                `)
+        } else if (PlanetX_Basic.lightSensor(PlanetX_Basic.AnalogRJPin.J1) < 500) {
+            nezhaV2.start(nezhaV2.MotorPostion.M1, -50)
+            nezhaV2.start(nezhaV2.MotorPostion.M2, 50)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # .
+                `)
+        } else {
+            nezhaV2.start(nezhaV2.MotorPostion.M1, -50)
+            nezhaV2.start(nezhaV2.MotorPostion.M2, 50)
+            basic.showLeds(`
+                . # # # .
+                . # # # .
+                . # # # .
+                . # # # .
+                . # # # .
+                `)
+            count += 1
+        }
     }
+    nezhaV2.stop(nezhaV2.MotorPostion.M1)
+    nezhaV2.stop(nezhaV2.MotorPostion.M2)
+    basic.showLeds(`
+        # . . . #
+        . # . # .
+        . . # . .
+        . # . # .
+        # . . . #
+        `)
 })

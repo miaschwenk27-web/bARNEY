@@ -7,7 +7,9 @@
         "microphone": "*",
         "pxt-nezha2": "github:elecfreaks/pxt-nezha2#v1.2.1",
         "audio-recording": "*",
-        "pxt-PlanetX": "github:elecfreaks/pxt-planetx#v1.6.1"
+        "pxt-PlanetX": "github:elecfreaks/pxt-planetx#v1.6.1",
+        "midi": "github:microsoft/pxt-midi#v2.2.0",
+        "ds1307": "github:tinkertanker/pxt-realtimeclock-ds1307#cac7e9e8edf290e6f12cb3920f014c20d39feb58"
     },
     "files": [
         "main.blocks",
